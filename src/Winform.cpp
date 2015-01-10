@@ -31,6 +31,7 @@ bool Winform::Init(const int width,const int height)
         else
         {
             gl = SDL_GL_CreateContext(window);
+            InitGL();
         }
     }
     return success;
@@ -61,6 +62,9 @@ void Winform::InitGL()
     glClearColor(0.0f,0.0f,0.0f,0.0f);
     glClearDepth(1.0);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
     glDepthFunc(GL_LEQUAL);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);

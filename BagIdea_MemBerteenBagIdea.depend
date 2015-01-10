@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1420751250 source:e:\my work\git\bagidea_memberteenbagidea\main.cpp
+1420900744 source:e:\my work\git\bagidea_memberteenbagidea\main.cpp
 	<iostream>
 	<SDL.h>
 	<GL/gl.h>
 	<GL/glu.h>
 	"Winform.h"
+	"Job1.h"
 
 1394937196 c:\users\memberteenbagidea\downloads\sdl2-devel-2.0.3-mingw\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -325,10 +326,41 @@
 
 1420749627 e:\my work\git\bagidea_memberteenbagidea\include\winform.h
 
-1420751259 source:e:\my work\git\bagidea_memberteenbagidea\src\winform.cpp
+1420889791 source:e:\my work\git\bagidea_memberteenbagidea\src\winform.cpp
 	<SDL.h>
 	<iostream>
 	<GL/gl.h>
 	<GL/glu.h>
 	"Winform.h"
+
+1420885928 e:\my work\git\bagidea_memberteenbagidea\include\job1.h
+
+1420887391 source:e:\my work\git\bagidea_memberteenbagidea\src\job1.cpp
+	<SDL.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<SDL_opengl.h>
+	<SDL_image.h>
+	<iostream>
+	"Job1.h"
+
+1394937197 c:\users\memberteenbagidea\downloads\sdl2-devel-2.0.3-mingw\sdl2-2.0.3\i686-w64-mingw32\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1376156342 c:\users\memberteenbagidea\downloads\sdl2_image-2.0.0\i686-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 

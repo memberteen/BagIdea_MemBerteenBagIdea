@@ -3,88 +3,155 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "Winform.h"
+#include "Job1.h"
 using namespace std;
 const int width = 640;
 const int height = 480;
 Winform win;
+Job1 job;
+unsigned int texure = 0;
 float angle = 0.0;
-
+float moveZ = -3.0;
+float moveX = 0;
+float moveY = 0;
+bool sucZ = true;
+bool sucX = true;
+bool sucY = true;
 void DrawCube(float size)
 {
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    //glLoadIdentity();
+    float difamb[] = {1,0.5,0.3,1};
+    glBindTexture(GL_TEXTURE_2D,texure);
     glBegin(GL_QUADS);
-    // front face
-    glNormal3f(0.0,0.0,1.0);
-   glColor3f(1.0,0.0,0.0);
-    glVertex3f(size/2,size/2,size/2);
-     glColor3f(0.0,1.0,0.0);
+    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,difamb);
+    //front
+    //glColor3f(1.0,0.0,0.0);
+    glNormal3f(0,0,1);
+    glTexCoord2f(0,1);
     glVertex3f(-size/2,size/2,size/2);
-     glColor3f(1.0,0.0,0.0);
+    glTexCoord2f(0,0);
     glVertex3f(-size/2,-size/2,size/2);
-     glColor3f(1.0,0.0,1.0);
+    glTexCoord2f(1,0);
     glVertex3f(size/2,-size/2,size/2);
-    // left face
-    glNormal3f(-1.0,0.0,0.0);
-    glColor3f(1.0,1.0,0.0);
-    glVertex3f(-size/2,size/2,size/2);
-    glColor3f(3.0,1.0,2.0);
-    glVertex3f(-size/2,-size/2,size/2);
-    glColor3f(0.0,1.0,5.0);
-    glVertex3f(-size/2,-size/2,-size/2);
-    glColor3f(9.0,0.0,8.0);
-    glVertex3f(-size/2,size/2,-size/2);
-    // back face
-    glNormal3f(0.0,0.0,-1.0);
-    glColor3f(1.0,0.0,0.0);
-    glVertex3f(size/2,size/2,-size/2);
-    glColor3f(0.0,7.0,1.0);
-    glVertex3f(-size/2,size/2,-size/2);
-    glColor3f(0.0,0.0,1.0);
-    glVertex3f(-size/2,-size/2,-size/2);
-    glColor3f(0.0,1.0,0.0);
-    glVertex3f(size/2,-size/2,-size/2);
-    // right face
-    glNormal3f(1.0,0.0,0.0);
-    glColor3f(1.0,1.0,0.0);
+    glTexCoord2f(1,1);
     glVertex3f(size/2,size/2,size/2);
-    glColor3f(1.0,0.0,1.0);
-    glVertex3f(size/2,-size/2,size/2);
-    glColor3f(0.0,1.0,1.0);
-    glVertex3f(size/2,-size/2,-size/2);
-    glColor3f(1.0,1.0,7.0);
+
+    //back
+    glNormal3f(0,0,-1);
+    glTexCoord2f(0,1);
     glVertex3f(size/2,size/2,-size/2);
-    // top face
-    glNormal3f(0.0,1.0,0.0);
-    glColor3f(1.0,0.0,1.0);
-    glVertex3f(size/2,size/2,size/2);
-    glColor3f(0.0,1.0,1.0);
-    glVertex3f(-size/2,size/2,size/2);
-    glColor3f(0.0,1.0,0.0);
+    glTexCoord2f(0,0);
     glVertex3f(-size/2,size/2,-size/2);
-    glColor3f(0.0,0.0,1.0);
-    glVertex3f(size/2,size/2,-size/2);
-    // bottom face
-    glNormal3f(0.0,-1.0,0.0);
-    glColor3f(0.0,1.0,1.0);
-    glVertex3f(size/2,-size/2,size/2);
-     glColor3f(1.0,1.0,0.0);
-    glVertex3f(-size/2,-size/2,size/2);
-     glColor3f(1.0,0.0,1.0);
+    glTexCoord2f(1,0);
     glVertex3f(-size/2,-size/2,-size/2);
-     glColor3f(100.0,51.0,78.0);
+    glTexCoord2f(1,1);
     glVertex3f(size/2,-size/2,-size/2);
+
+    //top
+    glNormal3f(0,1,0);
+    glTexCoord2f(0,1);
+    glVertex3f(size/2,size/2,size/2);
+    glTexCoord2f(0,0);
+    glVertex3f(-size/2,size/2,size/2);
+    glTexCoord2f(1,0);
+    glVertex3f(-size/2,size/2,-size/2);
+    glTexCoord2f(1,1);
+    glVertex3f(size/2,size/2,-size/2);
+
+    //buttom
+    glNormal3f(0,-1,0);
+    glTexCoord2f(0,1);
+    glVertex3f(size/2,-size/2,size/2);
+    glTexCoord2f(0,0);
+    glVertex3f(-size/2,-size/2,size/2);
+    glTexCoord2f(1,0);
+    glVertex3f(-size/2,-size/2,-size/2);
+    glTexCoord2f(1,1);
+    glVertex3f(size/2,-size/2,-size/2);
+
+    //left
+    glNormal3f(-1,0,0);
+    glTexCoord2f(0,1);
+    glVertex3f(-size/2,size/2,-size/2);
+    glTexCoord2f(0,0);
+    glVertex3f(-size/2,-size/2,-size/2);
+    glTexCoord2f(1,0);
+    glVertex3f(-size/2,-size/2,size/2);
+    glTexCoord2f(1,1);
+    glVertex3f(-size/2,size/2,size/2);
+
+    //right
+    glNormal3f(1,0,0);
+    glTexCoord2f(0,1);
+    glVertex3f(size/2,size/2,-size/2);
+    glTexCoord2f(0,0);
+    glVertex3f(size/2,-size/2,-size/2);
+    glTexCoord2f(1,0);
+    glVertex3f(size/2,-size/2,size/2);
+    glTexCoord2f(1,1);
+    glVertex3f(size/2,size/2,size/2);
     glEnd();
 }
+
 void Update()
 {
-    glColor3f(0.0f,0.0f,0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
     glLoadIdentity();
-    glTranslated(0.0,0.0,-3.0);
-    glRotatef(angle,0.0,3.0,1.0);
-    glRotatef(angle,3.0,1.0,0.0);
+    glTranslated(moveX,moveX,moveZ);
+    glRotated(45,1.0,0.0,0.0);
+    glRotated(angle,0.0,1.0,0.0);
     DrawCube(1.0);
     angle += 0.08;
-    if(angle > 360)
+    if(moveZ < -7)
+    {
+        sucZ = false;
+    }
+    if(moveZ > -2)
+    {
+        sucZ = true;
+    }
+    if(moveX >= 2)
+    {
+        sucX = false;
+    }
+    if(moveX < -2)
+    {
+        sucX = true;
+    }
+    if(moveY >= 2)
+    {
+        sucY = false;
+    }
+    if(moveY < -2)
+    {
+        sucY = true;
+    }
+    if(sucY == false)
+    {
+        moveY -= 0.005;
+    }
+    else if(sucY == true)
+    {
+        moveY += 0.005;
+    }
+    if(sucZ == true)
+    {
+        moveZ -=0.005;
+    }
+    else if(sucZ == false)
+    {
+        moveZ += 0.005;
+    }
+    if(sucX == false)
+    {
+        moveX -= 0.005;
+    }
+    if(sucX == true)
+    {
+        moveX += 0.005;
+    }
+    else if(angle > 360)
     {
         angle -= 360;
     }
@@ -98,7 +165,8 @@ int main(int argc, char* args[])
     }
     else
     {
-        win.InitGL();
+        job.setLight();
+        texure = job.loadingTexture("bg.bmp");
         if(!win.Setviewport(width,height))
         {
             cout << "Setview Fail" << endl;
