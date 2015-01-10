@@ -93,16 +93,8 @@ void DrawCube(float size)
     glVertex3f(size/2,size/2,size/2);
     glEnd();
 }
-
-void Update()
+void Move(float x,float y,float z)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
-    glLoadIdentity();
-    glTranslated(moveX,moveX,moveZ);
-    glRotated(45,1.0,0.0,0.0);
-    glRotated(angle,0.0,1.0,0.0);
-    DrawCube(1.0);
-    angle += 0.08;
     if(moveZ < -7)
     {
         sucZ = false;
@@ -127,6 +119,17 @@ void Update()
     {
         sucY = true;
     }
+}
+void Update()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+    glLoadIdentity();
+    glTranslated(moveX,moveY,moveZ);
+    glRotated(45,1.0,0.0,0.0);
+    glRotated(angle,0.0,1.0,0.0);
+    DrawCube(1.0);
+    angle += 0.1;
+    Move(moveX,moveY,moveZ);
     if(sucY == false)
     {
         moveY -= 0.005;
